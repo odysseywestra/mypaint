@@ -7,16 +7,34 @@ language: generic
 services:
   - docker
 
+docker:
+  image:
+    -ubuntu:17.04
+
+packages:
+  - gcc
+  - git
+  - swig
+  - python-setuptools
+  - gettext
+  - python-dev
+  - python-numpy
+  - libgtk-3-dev
+  - python-gi-dev
+  - libpng-dev
+  - liblcms2-dev
+  - libjson-c-dev
+  - gir1.2-gtk-3.0
+  - python-gi-cairo
+
+
 before_install:
-  - docker pull ubuntu:17.04
+  - docker pull {{ docker.image }}
 
 
 install:
   - docker run ubuntu:17.04 /bin/sh -c "apt-get update"
-  - docker run ubuntu:17.04 /bin/sh -c "apt-get install -y git swig /
-                python-setuptools gettext python-dev python-numpy libgtk-3-dev /
-                python-gi-dev libpng-dev liblcms2-dev libjson-c-dev /
-                gir1.2-gtk-3.0 python-gi-cairo"
+  - docker run ubuntu:17.04 /bin/sh -c "apt-get install -y {{ packages }}"
 
 before_script:
     - docker run ubuntu:17.04 /bin/sh -c "git clone https://github.com/mypaint/libmypaint"
