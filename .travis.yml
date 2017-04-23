@@ -8,28 +8,28 @@ services:
   - docker
 
 before_install:
-  - docker pull ubuntu:17.04
+  - docker pull ubuntu:latest
 
 
 install:
-  - docker run ubuntu:17.04 /bin/sh -c "apt-get update"
-  - docker run ubuntu:17.04 /bin/sh -c "apt-get install -y gcc git swig python-setuptools gettext python-dev python-numpy libgtk-3-dev python-gi-dev libpng-dev liblcms2-dev libjson-c-dev gir1.2-gtk-3.0 python-gi-cairo"
+  - docker run ubuntu:latest /bin/sh -c "apt-get update"
+  - docker run ubuntu:latest /bin/sh -c "apt-get install -y gcc git swig python-setuptools gettext python-dev python-numpy libgtk-3-dev python-gi-dev libpng-dev liblcms2-dev libjson-c-dev gir1.2-gtk-3.0 python-gi-cairo"
 
 before_script:
-    - docker run ubuntu:17.04 /bin/sh -c "git clone https://github.com/mypaint/libmypaint"
-    - docker run ubuntu:17.04 /bin/sh -c "cd libmypaint"
-    - docker run ubuntu:17.04 /bin/sh -c "./autogen.sh"
-    - docker run ubuntu:17.04 /bin/sh -c "./configure --prefix=/usr"
-    - docker run ubuntu:17.04 /bin/sh -c "make"
-    - docker run ubuntu:17.04 /bin/sh -c "sudo make install"
-    - docker run ubuntu:17.04 /bin/sh -c "cd .."
-    - docker run ubuntu:17.04 /bin/sh -c "sudo rm -fr libmypaint"
+  - docker run ubuntu:latest /bin/sh -c "git clone https://github.com/mypaint/libmypaint"
+  - docker run ubuntu:latest /bin/sh -c "cd libmypaint"
+  - docker run ubuntu:latest /bin/sh -c "./autogen.sh"
+  - docker run ubuntu:latest /bin/sh -c "./configure --prefix=/usr"
+  - docker run ubuntu:latest /bin/sh -c "make"
+  - docker run ubuntu:latest /bin/sh -c "sudo make install"
+  - docker run ubuntu:latest /bin/sh -c "cd .."
+  - docker run ubuntu:latest /bin/sh -c "sudo rm -fr libmypaint"
 
 script:
-    - docker run ubuntu:17.04 /bin/sh -c "python setup.py build"
-    - docker run ubuntu:17.04 /bin/sh -c "python setup.py nosetests --tests lib"
-    - docker run ubuntu:17.04 /bin/sh -c "python setup.py test"
-    - docker run ubuntu:17.04 /bin/sh -c "sudo python setup.py managed_install"
-    - docker run ubuntu:17.04 /bin/sh -c "sudo python setup.py managed_uninstall"
-    - docker run ubuntu:17.04 /bin/sh -c "sudo python setup.py install --root=/app/ --prefix=."
-    - docker run ubuntu:17.04 /bin/sh -c "bash -ex appimage/appimage.sh || true"
+  - docker run ubuntu:latest /bin/sh -c "python setup.py build"
+  - docker run ubuntu:latest /bin/sh -c "python setup.py nosetests --tests lib"
+  - docker run ubuntu:latest /bin/sh -c "python setup.py test"
+  - docker run ubuntu:latest /bin/sh -c "sudo python setup.py managed_install"
+  - docker run ubuntu:latest /bin/sh -c "sudo python setup.py managed_uninstall"
+  - docker run ubuntu:latest /bin/sh -c "sudo python setup.py install --root=/app/ --prefix=."
+  - docker run ubuntu:latest /bin/sh -c "bash -ex appimage/appimage.sh || true"
