@@ -13,8 +13,7 @@ before_install:
 
 
 install:
-  - docker run ubuntu bash -c "apt-get update"
-  - docker run ubuntu bash -c "apt-get install -y gcc git swig python-setuptools gettext python-dev python-numpy libgtk-3-dev python-gi-dev libpng-dev liblcms2-dev libjson-c-dev gir1.2-gtk-3.0 python-gi-cairo"
+  - docker run ubuntu bash -c "apt-get update && apt-get install -y gcc git swig python-setuptools gettext python-dev python-numpy libgtk-3-dev python-gi-dev libpng-dev liblcms2-dev libjson-c-dev gir1.2-gtk-3.0 python-gi-cairo"
 
 before_script:
   - docker run ubuntu bash -c "git clone https://github.com/mypaint/libmypaint"
