@@ -12,7 +12,6 @@ before_install:
 
 
 install:
-  docker run carlad/sinatra /bin/sh -c
   - docker run ubuntu:17.04 /bin/sh -c "apt-get update"
   - docker run ubuntu:17.04 /bin/sh -c "apt-get install -y git swig /
                 python-setuptools gettext python-dev python-numpy libgtk-3-dev /
