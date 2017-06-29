@@ -7,6 +7,7 @@
 ########################################################################
 
 export ARCH=$(arch)
+export GTK_THEME=Adwaita
 eval `python2 lib/meta.py`
 
 APP=MyPaint
