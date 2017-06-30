@@ -7,7 +7,7 @@
 ########################################################################
 
 export ARCH=$(arch)
-export GTK_THEME=Arc
+export GTK_THEME=Vertex
 eval `python2 lib/meta.py`
 
 APP=MyPaint
@@ -48,7 +48,7 @@ echo "deb http://archive.ubuntu.com/ubuntu/ trusty main universe" > sources.list
 apt-get $OPTIONS update
 URLS=$(apt-get $OPTIONS -y install --print-uris python-gi gir1.2-gtk-3.0 python-gi-cairo libgtk-3-0 python-numpy unity-gtk3-module libcanberra-gtk3-module | cut -d "'" -f 2 | grep -e "^http")
 wget -c $URLS
-wget -c "http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/all/arc-theme_1488477732.766ae1a-0_all.deb"
+wget -c "http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_14.04/all/vertex-theme_1459280359.d828032_all.deb"
 
 cd ./$APP.AppDir/
 
