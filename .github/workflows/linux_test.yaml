@@ -1,11 +1,11 @@
-name: Test
+name: Linux_Test
 
 on:
     - push
     - pull_request
 
 jobs:
-    linux:
+    linux_test:
         name: Linux
         runs-on: ubuntu-24.04
         steps:
