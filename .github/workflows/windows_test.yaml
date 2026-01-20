@@ -21,7 +21,7 @@ jobs:
                 shell: msys2 {0}
         steps:
             - uses: actions/checkout@v4
-            - uses: msys2/setup-msys2@v3
+            - uses: msys2/setup-msys2@v2
               with:
                   msystem: ${{ matrix.msystem }}
                   arch: ${{ matrix.msys2_arch }}
