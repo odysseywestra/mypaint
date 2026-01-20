@@ -81,6 +81,7 @@ jobs:
                   python3 setup.py build
             - name: "Run tests"
               run: |
+                  export PATH=/usr/lib:$PATH
                   pytest --doctest-modules lib
                   pytest -rP
                   python3 setup.py clean --all
