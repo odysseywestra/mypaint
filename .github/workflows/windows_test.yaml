@@ -10,12 +10,16 @@ jobs:
         runs-on: windows-latest
         strategy:
             matrix:
-                msys2_arch: [x86_64, i686]
+                msys2_arch: [x86_64]
+                # TODO: Re-enable i686 after investigating MSYS2 package availability
+                # 32-bit packages (mingw-w64-i686-*) are being deprecated in MSYS2
+                # Some packages like python-numpy are no longer available for 32-bit
+                # msys2_arch: [x86_64, i686]
                 include:
                     - msys2_arch: x86_64
                       msystem: MINGW64
-                    - msys2_arch: i686
-                      msystem: MINGW32
+                    # - msys2_arch: i686
+                    #   msystem: MINGW32
         defaults:
             run:
                 shell: msys2 {0}
@@ -28,21 +32,24 @@ jobs:
                   install: >-
                       base-devel
                       git
+                      autoconf
+                      automake
+                      libtool
+                      intltool
                       mingw-w64-${{ matrix.msys2_arch }}-toolchain
+                      mingw-w64-${{ matrix.msys2_arch }}-gobject-introspection
                       mingw-w64-${{ matrix.msys2_arch }}-pkg-config
                       mingw-w64-${{ matrix.msys2_arch }}-glib2
                       mingw-w64-${{ matrix.msys2_arch }}-gtk3
                       mingw-w64-${{ matrix.msys2_arch }}-json-c
                       mingw-w64-${{ matrix.msys2_arch }}-lcms2
-                      mingw-w64-${{ matrix.msys2_arch }}-python3-cairo
-                      mingw-w64-${{ matrix.msys2_arch }}-pygobject-devel
-                      mingw-w64-${{ matrix.msys2_arch }}-python3-gobject
-                      mingw-w64-${{ matrix.msys2_arch }}-python3-numpy
+                      mingw-w64-${{ matrix.msys2_arch }}-python-cairo
+                      mingw-w64-${{ matrix.msys2_arch }}-python-gobject
+                      mingw-w64-${{ matrix.msys2_arch }}-python-numpy
                       mingw-w64-${{ matrix.msys2_arch }}-hicolor-icon-theme
                       mingw-w64-${{ matrix.msys2_arch }}-librsvg
-                      mingw-w64-${{ matrix.msys2_arch }}-gobject-introspection
-                      mingw-w64-${{ matrix.msys2_arch }}-python3-pytest
-                      mingw-w64-${{ matrix.msys2_arch }}-python3-setuptools
+                      mingw-w64-${{ matrix.msys2_arch }}-python-pytest
+                      mingw-w64-${{ matrix.msys2_arch }}-python-setuptools
                       mingw-w64-${{ matrix.msys2_arch }}-swig
                       mingw-w64-${{ matrix.msys2_arch }}-gsettings-desktop-schemas
             - name: "Install libmypaint"
