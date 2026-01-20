@@ -24,7 +24,6 @@ jobs:
             - uses: msys2/setup-msys2@v2
               with:
                   msystem: ${{ matrix.msystem }}
-                  arch: ${{ matrix.msys2_arch }}
                   update: true
                   install: >-
                       base-devel
